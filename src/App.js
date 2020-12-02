@@ -1,10 +1,10 @@
-import './App.css';
+import './styles/App.scss'
+import Hero from './components/Home/Hero'
 
 function App() {
   return (
     <>
-      <h1>¡Hola Mundo!</h1>
-      <p>Este es mi e-commerce</p>
+      <Hero />
     </>
   );
 }
