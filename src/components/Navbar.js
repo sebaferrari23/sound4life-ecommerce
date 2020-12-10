@@ -1,18 +1,19 @@
 import { useState } from 'react';
+import CartWidget from './CartWidget';
 
 const Navbar = () => {
 
 	const [isActive, setisActive] = useState(false);
 
     return (
-        <header className="navbar">
+        <header className="navbar is-fixed-top is-spaced">
 
 			<div className="container">
 				
 				<div className="navbar-brand">
 
 					<a href="/" className="navbar-item">
-						<img src="https://bulma.io/images/bulma-type-white.png" alt="Logo" />
+						<h1 class="title is-uppercase">Sound4Life</h1>
 					</a>
 
 					<button
@@ -29,12 +30,14 @@ const Navbar = () => {
 
 				</div>
 
-				<div id="navbarMenu" className={`navbar-menu ${isActive ? "is-active" : ""}`}>
+				<div id="navbarMenu" className={`navbar-menu mr-4 ${isActive ? "is-active" : ""}`}>
 					<div className="navbar-end">
 						<a href="/" className="navbar-item">Headphones</a>
 						<a href="/" className="navbar-item">Earbuds</a>
 					</div>
 				</div>
+
+				<CartWidget />
 
 			</div>
 
