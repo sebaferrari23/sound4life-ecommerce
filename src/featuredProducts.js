@@ -8,20 +8,20 @@ export const featuredProducts = [
         brand: "Sony",
         image: Headphone2,
         price: "$279.99",
-        quantity: 1,
+        quantity: 3,
     },
     {
         title: "WH-CH510",
         brand: "Sony",
         image: Headphone3,
         price: "$59.99",
-        quantity: 1,
+        quantity: 4,
     },
     {
         title: "MD3-1RBT",
         brand: "Sony",
         image: Headphone4,
         price: "$127.99",
-        quantity: 0,
+        quantity: 1,
     }
   ];

@@ -1,10 +1,11 @@
+import ProductCount from './ProductCount.js'
 const Product = ( { image, title, brand, price, quantity} ) => {
 
     let button;
     if (quantity > 0) {
-        button = <a href="#" class="card-footer-item"><i className="fas fa-shopping-cart"></i> Add to cart</a>;
+        button = <a href="#" className="card-footer-item"><i className="fas fa-shopping-cart"></i> Add to cart</a>;
     } else {
-        button = <p class="card-footer-item">Out of stock</p>;
+        button = <p className="card-footer-item">Out of stock</p>;
     }
 
     return (
@@ -19,6 +20,7 @@ const Product = ( { image, title, brand, price, quantity} ) => {
         <div className="card-content">
             <p className="title is-4">{ title }</p>
             <p className="subtitle is-6">{ brand }</p>
+            <ProductCount stock={quantity} />
         </div>
 
         <div className="card-footer">

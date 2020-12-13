@@ -3,22 +3,33 @@ import CartWidget from './CartWidget';
 
 const Navbar = () => {
 
-	const [isActive, setisActive] = useState(false);
+	const [isMenuActive, setIsMenuActive] = useState(false);
+	const [navbarBg, setNavbarBg] = useState(false);
+
+	const changeBackground = () => {
+		if(window.scrollY >= 80) {
+			setNavbarBg(true);
+		} else {
+			setNavbarBg(false);
+		}
+	}
+
+	window.addEventListener('scroll', changeBackground);
 
     return (
-        <header className="navbar is-fixed-top is-spaced">
+        <header className={`navbar is-fixed-top is-spaced ${!navbarBg ? "is-transparent" : ""}`}>
 
 			<div className="container">
 				
 				<div className="navbar-brand">
 
 					<a href="/" className="navbar-item">
-						<h1 class="title is-uppercase">Sound4Life</h1>
+						<h1 className="title is-uppercase">Sound4Life</h1>
 					</a>
 
 					<button
-						onClick={() => { setisActive(!isActive); }}
-						className={`navbar-burger burger ${isActive ? "is-active" : ""}`}
+						onClick={() => { setIsMenuActive(!isMenuActive); }}
+						className={`navbar-burger burger ${isMenuActive ? "is-active" : ""}`}
 						aria-label="menu"
 						aria-expanded="false"
 						data-target="navbarMenu"
@@ -30,7 +41,7 @@ const Navbar = () => {
 
 				</div>
 
-				<div id="navbarMenu" className={`navbar-menu mr-4 ${isActive ? "is-active" : ""}`}>
+				<div id="navbarMenu" className={`navbar-menu mr-4 ${isMenuActive ? "is-active" : ""}`}>
 					<div className="navbar-end">
 						<a href="/" className="navbar-item">Headphones</a>
 						<a href="/" className="navbar-item">Earbuds</a>
