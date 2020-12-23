@@ -51,6 +51,10 @@
     animation: float 5s ease-in-out infinite;
 }
 
+.spinner {
+    min-height: 700px;
+}
+
 @keyframes float {
     0% {
         transform: translate(0) rotate(15deg);

@@ -1,30 +1,27 @@
-import Product from '../Product/Product'
+import {useState, useEffect} from 'react';
 import { featuredProducts } from "../../featuredProducts";
+import ProductsList from '../Product/ProductsList';
+import Spinner from '../Spinner';
 
 const FeaturedProducts = () => {
+
+    const [products, setProducts] = useState([]);
+
+    const getProducts = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(featuredProducts);
+        }, 2000)
+    })
+
+    useEffect(() => {
+        getProducts.then(rta => setProducts(rta));
+    }, []);
+
     return (
         <section className="section is-medium">
             <div className="container">
-                <h1 className="title mb-6">New products</h1>
-                
-                <div className="columns">
-
-                    {featuredProducts.map((product, key) => {
-                        return (
-                            <div className="column" key={key}>
-                                <Product 
-                                    image={product.image}
-                                    title={product.title}
-                                    brand={product.brand}
-                                    price={product.price}
-                                    quantity={product.quantity}
-                                />
-                            </div>
-                        );
-                    })}
-
-                </div>
-
+                { products.length ?
+                <ProductsList productsList={products}  productsTitle="New products" /> : <Spinner /> }
             </div>
         </section>
     )
