@@ -2,7 +2,7 @@ import Product from './Product'
 
 const ProductsList = (props) => {
     return (
-        <div>
+        <>
             <h3 className="title mb-6">{ props.productsTitle }</h3>
             <div className="columns">
                 { props.productsList.length && props.productsList.map((product, key) => {
@@ -19,7 +19,7 @@ const ProductsList = (props) => {
                     );
                 })}
             </div>
-        </div>
+        </>
     )
 }
 
