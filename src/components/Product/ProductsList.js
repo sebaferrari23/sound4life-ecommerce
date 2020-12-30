@@ -1,14 +1,20 @@
 import Product from './Product'
 
-const ProductsList = (props) => {
+const ProductsList = ({productsTitle, productsList, productsCategory}) => {
+
+    const productItems = productsCategory ? 
+    productsList.length > 0 && productsList.filter(product => (product.category === productsCategory) ) :
+    productsList;
+
     return (
         <>
-            <h3 className="title mb-6">{ props.productsTitle }</h3>
+            <h3 className="title is-uppercase mb-6">{ productsTitle }</h3>
             <div className="columns">
-                { props.productsList.length && props.productsList.map((product, key) => {
+                { productItems.length && productItems.map((product) => {
                     return (
-                        <div className="column" key={key}>
+                        <div className="column is-4" key={product.id}>
                             <Product 
+                                id={product.id}
                                 image={product.image}
                                 title={product.title}
                                 brand={product.brand}

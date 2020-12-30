@@ -1,30 +1,32 @@
 import {useState, useEffect} from 'react';
-import { products } from "../../constant/products";
+import { products } from '../../constant/products';
 import ProductsList from '../Product/ProductsList';
 import Spinner from '../general/Spinner';
+import {useParams} from 'react-router-dom'
 
-const FeaturedProducts = () => {
+const Category = () => {
 
-    const [fetchProducts, setFetchProducts] = useState([]);
+    const [fetchProducts, setProducts] = useState([]);
+    const {category_name} = useParams();
 
     const getProducts = new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(products);
-        }, 500)
+        }, 2000)
     })
 
     useEffect(() => {
-        getProducts.then(rta => setFetchProducts(rta));
+        getProducts.then(rta => setProducts(rta));
     }, []);
 
     return (
         <section className="section is-medium">
             <div className="container">
                 { fetchProducts.length ?
-                <ProductsList productsList={fetchProducts} productsTitle="New products" /> : <Spinner /> }
+                <ProductsList productsList={fetchProducts} productsCategory={category_name} productsTitle={category_name} /> : <Spinner /> }
             </div>
         </section>
     )
 }
 
-export default FeaturedProducts
+export default Category

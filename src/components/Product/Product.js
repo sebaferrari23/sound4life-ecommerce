@@ -1,36 +1,25 @@
-import ProductCount from './ProductCount.js'
-const Product = ( { image, title, brand, price, quantity} ) => {
-
-    let button;
-    if (quantity > 0) {
-        button = <a href="#" className="card-footer-item"><i className="fas fa-shopping-cart"></i> Add to cart</a>;
-    } else {
-        button = <p className="card-footer-item">Out of stock</p>;
-    }
-
+import { Link } from 'react-router-dom';
+const Product = ( { id, image, title, brand, price} ) => {
     return (
-    <div className="card">
+        <div className="card">
 
-        <div className="card-image">
-            <figure className="image">
-                <img src={ image } alt={title} />
-            </figure>
+            <Link to={`/details/${id}`} className="card-image">
+                <figure className="image">
+                    <img src={ image } alt={title} />
+                </figure>
+            </Link>
+
+            <div className="card-content has-text-centered">
+                <Link to={`/details/${id}`} className="title is-block is-4">{ title }</Link>
+                <p className="subtitle is-6">{ brand }</p>
+                <div className="is-flex is-justify-content-space-between">
+                    <p className="title mb-0 is-3">
+                        <strong>{price}</strong>
+                    </p>
+                    <Link to={`/details/${id}`} className="button is-primary">See more</Link>
+                </div>
+            </div>
         </div>
-
-        <div className="card-content">
-            <p className="title is-4">{ title }</p>
-            <p className="subtitle is-6">{ brand }</p>
-            <ProductCount stock={quantity} />
-        </div>
-
-        <div className="card-footer">
-            <p className="card-footer-item has-text-info">
-                <strong>{price}</strong>
-            </p>
-            {button}
-        </div>
-
-    </div>
     )
 }
 

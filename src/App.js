@@ -1,27 +1,28 @@
 import './styles/App.scss'
-import Navbar from './components/Navbar'
-import Hero from './components/Home/Hero'
-import FeaturedProducts from './components/Home/FeaturedProducts';
-import Footer from './components/Footer'
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import Navbar from './components/general/Navbar'
+import Footer from './components/general/Footer'
 import Detail from './components/Detail';
+import Home from './components/Home';
+import Category from './components/Category/index';
 
 function App() {
-
-  const sectionToShow = (section) => {
-    switch(section) {
-      case 'Home': return <FeaturedProducts />;
-      case 'Detail': return <Detail />;
-      default: return <FeaturedProducts />
-    }
-  }
-
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
-      <Hero />
-      {sectionToShow('Detail')}
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/category/:category_name">
+          <Category />
+        </Route>
+        <Route path="/details/:id">
+          <Detail />
+        </Route>
+      </Switch>
       <Footer />
-    </>
+    </BrowserRouter>
   );
 }
 

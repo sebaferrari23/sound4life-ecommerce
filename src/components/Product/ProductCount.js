@@ -10,13 +10,13 @@ const ProductCount = ( { stock } ) => {
         }
     }
     const remove = () => {
-        if(count === 0) return;
+        if(count === 1) return;
         setCount(count - 1)
     }
 
     return (
         <div className="product-counter">
-            <button className="button is-primary" onClick={ () => remove() } disabled={count===0} >
+            <button className="button is-primary" onClick={ () => remove() } disabled={count===1} >
                 <span className="icon is-small">
                     <i className="fas fa-minus"></i>
                 </span>

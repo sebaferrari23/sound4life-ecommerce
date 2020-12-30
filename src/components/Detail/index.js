@@ -1,24 +1,25 @@
-import {useEffect, useState} from 'react';
-import { featuredProducts } from "../../featuredProducts";
-import Spinner from '../Spinner';
-import ProductDetail from './ProductDetails';
+import {useEffect, useState} from 'react'
+import {useParams} from 'react-router-dom'
+import { products } from '../../constant/products'
+import Spinner from '../general/Spinner'
+import ProductDetail from './ProductDetails'
 
 const Detail = () => {
+    const {id} = useParams();
     const [product, setProduct] = useState(null);
-
-    console.log(product);
 
     const getProduct = new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve({
-                id: featuredProducts['0'].id, 
-                title: featuredProducts['0'].title,
-                brand: featuredProducts['0'].brand, 
-                image: featuredProducts['0'].image,
-                descripcion: featuredProducts['0'].description, 
-                price: featuredProducts['0'].price,
+                id: products[id-1].id, 
+                title: products[id-1].title,
+                brand: products[id-1].brand, 
+                image: products[id-1].image,
+                descripcion: products[id-1].description, 
+                quantity: products[id-1].quantity,
+                price: products[id-1].price,
             })
-        }, 2000);
+        }, 500);
     });
 
     useEffect(() => {
