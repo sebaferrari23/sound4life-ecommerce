@@ -1,3 +1,13 @@
+.footer {
+    text-align: center;
+    p, strong, a {
+        color: #fff;
+    }
+    a {
+        text-decoration: underline;
+    }
+}
+
 .widgetCart {
     position: fixed;
     z-index: 9999;
@@ -6,14 +16,11 @@
     right: -30%;
     top: 0;
     background: #fff;
-    box-shadow: -30px 0 30px rgba(0,0,0,0.1);
     transition: right 0.5s ease-in-out;
     padding: 30px;
-    &.close {
-        right: -30%;
-    }
     &.open {
         right: 0;
+        box-shadow: -30px 0 30px rgba(0,0,0,0.1);
     }
 }
   
@@ -54,10 +61,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 50px;
+    height: 40px;
     border: 1px solid #ccc;
+    background-color: #fff;
     padding: 0 5px;
-    border-radius: 4px;
+    border-radius: 20px;
+    min-width: 150px;
+    .button {
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        padding: 0;
+    }
 }
 
 .hero__img {
@@ -75,8 +90,20 @@
         animation: float 5s ease-in-out infinite;
     }
 }
+.table {
+    tr {
+        th, td {
+            vertical-align: middle;
+            .product-counter {
+                min-width: 100px;
+                max-width: 150px;
+            }
+        }
+    }
+}
 
 .spinner {
+    width: 100%;
     min-height: 700px;
 }
 

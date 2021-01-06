@@ -1,10 +1,16 @@
+import { useHistory } from "react-router-dom"
 import ProductCount from "../Product/ProductCount"
 
 const ProductDetail = ({product}) => {
 
+    let history = useHistory();
+    const handleRedirect = () => {
+        history.push("/cart");
+    }
+
     let button;
     if (product.quantity > 0) {
-        button = <button className="button is-primary">
+        button = <button onClick={handleRedirect} className="button is-rounded is-primary">
         <span className="icon">
             <i className="fas fa-shopping-cart"></i>
         </span><span>Add to cart</span></button>;
@@ -15,23 +21,21 @@ const ProductDetail = ({product}) => {
     return (
         <article className="columns is-align-items-center">
             <div className="column is-half">
-                <figure className="image is-16by9 is-animated">
+                <figure className="image is-animated">
                     <img src={product.image} alt={product.title} />
                 </figure >
             </div>
-            <div className="column">
+            <div className="column pr-6">
                 <h1 className="title">{product.title}</h1>
-                <div className="content pr-6">
-                    <p className="mb-5">{product.brand}</p>
-                    <p className="mb-5">{product.descripcion}</p>
-                    <p className="title"><strong>{product.price}</strong></p>
-                    <div className="columns mb-5 is-align-items-center">
-                        <div className="column">
-                            <ProductCount stock={product.quantity} />
-                        </div>
-                        <div className="column">
-                            {button}
-                        </div>
+                <h3 class="subtitle">{product.brand}</h3>
+                <p className="mb-5">{product.descripcion}</p>
+                <p className="title"><strong>{product.price}</strong></p>
+                <div className="columns mb-5 is-align-items-center">
+                    <div className="column">
+                        <ProductCount stock={product.quantity} />
+                    </div>
+                    <div className="column">
+                        {button}
                     </div>
                 </div>
             </div>

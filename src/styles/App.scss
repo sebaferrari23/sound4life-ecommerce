@@ -26,6 +26,11 @@ $footer-padding: 3rem 1.5rem;
 @import "../../node_modules/bulma/sass/elements/button.sass";
 @import "../../node_modules/bulma/sass/elements/container.sass";
 @import "../../node_modules/bulma/sass/elements/title.sass";
+@import "../../node_modules/bulma/sass/elements/table.sass";
+@import "../../node_modules/bulma/sass/elements/image.sass";
+@import "../../node_modules/bulma/sass/elements/other.sass";
+
+@import "../../node_modules/bulma/sass/form/_all.sass";
 
 // Components
 @import "../../node_modules/bulma/sass/components/navbar.sass";
