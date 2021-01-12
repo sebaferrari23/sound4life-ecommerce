@@ -16,7 +16,7 @@ const Product = ( { id, image, title, brand, price} ) => {
                     <p className="title mb-0 is-3">
                         <strong>{price}</strong>
                     </p>
-                    <Link to={`/details/${id}`} className="button is-primary">See more</Link>
+                    <Link to={`/details/${id}`} className="button is-rounded is-primary">See more</Link>
                 </div>
             </div>
         </div>
