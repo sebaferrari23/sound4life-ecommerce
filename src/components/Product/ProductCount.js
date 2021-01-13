@@ -1,28 +1,35 @@
-import { useState } from 'react'
+import {useContext} from 'react'
+import {Store} from '../../store'
 
 const ProductCount = ( { stock } ) => {
     
-    const [count, setCount] = useState(1);
+    const data = useContext(Store);
 
     const add = () => {
-        if(count < stock) {
-            setCount(count + 1);
+        if(data.itemsCart.count < stock) {
+            data.setItemsCart({
+                ...data.itemsCart, 
+                count: data.itemsCart.count + 1
+            });
         }
     }
     const remove = () => {
-        if(count === 1) return;
-        setCount(count - 1)
+        if(data.itemsCart.count === 1) return;
+        data.setItemsCart({
+            ...data.itemsCart, 
+            count: data.itemsCart.count - 1
+        });
     }
 
     return (
         <div className="product-counter">
-            <button className="button is-primary" onClick={ () => remove() } disabled={count===1} >
+            <button className="button is-primary" onClick={ () => remove() } disabled={data.itemsCart.count===1} >
                 <span className="icon is-small">
                     <i className="fas fa-minus"></i>
                 </span>
             </button>
-            <p>{count}</p>
-            <button className="button is-primary" onClick={ () => add() } disabled={count >= stock}>
+            <p>{data.itemsCart.count}</p>
+            <button className="button is-primary" onClick={ () => add() } disabled={data.itemsCart.count >= stock}>
                 <span className="icon is-small">
                     <i className="fas fa-plus"></i>
                 </span>

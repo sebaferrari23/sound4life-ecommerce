@@ -1,16 +1,41 @@
+import { useContext } from 'react'
+import {Store} from '../../store'
 import { useHistory } from "react-router-dom"
 import ProductCount from "../Product/ProductCount"
 
 const ProductDetail = ({product}) => {
 
-    let history = useHistory();
-    const handleRedirect = () => {
-        history.push("/cart");
+    const data = useContext(Store);
+    console.log(data.itemsCart);
+
+    //let history = useHistory();
+    
+    const onAddItem = (id) => {
+        data.itemsCart.items.filter(item => item.product.id === id).length === 0 ?
+        data.setItemsCart({
+            ...data.itemsCart,
+            items: [...data.itemsCart.items, { product, quantity: data.itemsCart.count }],
+            totalCart: data.itemsCart.totalCart + data.itemsCart.count,
+            count: 1
+        }) :
+        isInCart(id);
+        //history.push("/cart");
+    }
+
+    const isInCart = (id) => {
+        const index = data.itemsCart.items.findIndex( find => find.product.id === id);
+        const newItemsCart = data.itemsCart.items;
+        newItemsCart[index] = {...newItemsCart[index], quantity: newItemsCart[index].quantity + data.itemsCart.count}
+        data.setItemsCart({
+            ...data.itemsCart,
+            items: newItemsCart,
+            totalCart: data.itemsCart.totalCart + data.itemsCart.count
+        })
     }
 
     let button;
     if (product.quantity > 0) {
-        button = <button onClick={handleRedirect} className="button is-rounded is-primary">
+        button = <button onClick={() => onAddItem(product.id)} className="button is-rounded is-primary">
         <span className="icon">
             <i className="fas fa-shopping-cart"></i>
         </span><span>Add to cart</span></button>;
