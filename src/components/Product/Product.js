@@ -14,7 +14,7 @@ const Product = ( { id, image, title, brand, price} ) => {
                 <p className="subtitle is-6">{ brand }</p>
                 <div className="is-flex is-justify-content-space-between">
                     <p className="title mb-0 is-3">
-                        <strong>{price}</strong>
+                        <strong>${price}</strong>
                     </p>
                     <Link to={`/details/${id}`} className="button is-rounded is-primary">See more</Link>
                 </div>
