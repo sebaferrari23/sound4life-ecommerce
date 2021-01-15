@@ -7,7 +7,8 @@ const StoreProvider = ({children})=>{
     const [itemsCart, setItemsCart] = useState({
         items:[],
         count: 1,
-        totalCart: 0
+        totalCart: 0,
+        totalPrice: 0,
     });
 
     return(

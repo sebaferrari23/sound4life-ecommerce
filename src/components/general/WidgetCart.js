@@ -1,3 +1,5 @@
+
+import {Link} from 'react-router-dom'
 import {useContext} from 'react'
 import {Store} from '../../store'
 
@@ -6,8 +8,6 @@ const WidgetCart = ({show, action}) => {
     const data = useContext(Store);
 
     const removeItemFromCart = (id, quantity) => {
-        console.log(id);
-        
         const index = data.itemsCart.items.findIndex( find => find.product.id === id);
         const newItemsCart = data.itemsCart.items;
         newItemsCart.splice(index, 1);
@@ -28,7 +28,7 @@ const WidgetCart = ({show, action}) => {
     }
 
     const cartList = data.itemsCart.items && data.itemsCart.items.map(item => 
-        <div className="media is-flex is-align-items-center">
+        <div className="media is-flex is-align-items-center" key={item.product.id}>
             <figure className="media-left">
                 <p className="image is-64x64">
                     <img src={item.product.image} alt={item.product.title} />
@@ -47,11 +47,15 @@ const WidgetCart = ({show, action}) => {
         <div className={`widgetCart ${show ? 'open' : 'close'}`}>
             <div className="mb-6 is-flex is-align-items-center is-justify-content-space-between">
                 <p className="title mb-0">Your Cart ({data.itemsCart.totalCart})</p>
-                <button onClick={action} className="delete"></button>
+                <button onClick={action} className="delete is-large"></button>
             </div>
             { cartList }
             { data.itemsCart.totalCart > 0 &&
-                <button className="button is-danger is-rounded mt-6" onClick={removeAllItemsFromCart}>Remove all products</button>
+                <div className="is-flex is-align-items-center is-justify-content-space-between mt-6">
+                    <button className="button is-danger is-rounded" onClick={removeAllItemsFromCart}>Remove all products</button>
+                    <Link to="/cart" className="button is-primary is-pulled-right is-rounded"><span>Go To Cart</span><span className="icon"><i className="fas fa-arrow-right"></i></span></Link>
+                </div>
+                
             }
         </div>
     )

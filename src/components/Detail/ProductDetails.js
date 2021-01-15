@@ -6,9 +6,8 @@ import ProductCount from "../Product/ProductCount"
 const ProductDetail = ({product}) => {
 
     const data = useContext(Store);
-    console.log(data.itemsCart);
 
-    //let history = useHistory();
+    let history = useHistory();
     
     const onAddItem = (id) => {
         data.itemsCart.items.filter(item => item.product.id === id).length === 0 ?
@@ -16,10 +15,11 @@ const ProductDetail = ({product}) => {
             ...data.itemsCart,
             items: [...data.itemsCart.items, { product, quantity: data.itemsCart.count }],
             totalCart: data.itemsCart.totalCart + data.itemsCart.count,
-            count: 1
+            count: 1,
+            totalPrice: data.itemsCart.totalPrice + (product.price * data.itemsCart.count)
         }) :
         isInCart(id);
-        //history.push("/cart");
+        history.push("/cart");
     }
 
     const isInCart = (id) => {
@@ -52,9 +52,9 @@ const ProductDetail = ({product}) => {
             </div>
             <div className="column pr-6">
                 <h1 className="title">{product.title}</h1>
-                <h3 class="subtitle">{product.brand}</h3>
+                <h3 className="subtitle">{product.brand}</h3>
                 <p className="mb-5">{product.descripcion}</p>
-                <p className="title"><strong>{product.price}</strong></p>
+                <p className="title"><strong>${product.price}</strong></p>
                 <div className="columns mb-5 is-align-items-center">
                     <div className="column">
                         <ProductCount stock={product.quantity} />
