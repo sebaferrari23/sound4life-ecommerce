@@ -1,29 +1,39 @@
 import {useState, useEffect} from 'react';
-import { products } from '../../constant/products';
 import ProductsList from '../Product/ProductsList';
 import Spinner from '../general/Spinner';
 import {useParams} from 'react-router-dom'
+import { getFirestore } from '../../db';
 
 const Category = () => {
 
-    const [fetchProducts, setProducts] = useState([]);
     const {category_name} = useParams();
-
-    const getProducts = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(products);
-        }, 2000)
-    })
+    const [fetchProducts, setFetchProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        getProducts.then(rta => setProducts(rta));
-    }, []);
+        setLoading(true);
+        const db = getFirestore();
+
+        db.collection('products').where('category', '==', category_name).get()
+        .then(productsByCategory => {
+            let productsByCategoryArr = [];
+            productsByCategory.docs.forEach(doc => {
+                productsByCategoryArr.push({id: doc.id, data: doc.data()})
+            })
+            setFetchProducts(productsByCategoryArr);
+            setLoading(false);
+        })
+        .catch(e => console.log(e));
+    }, [category_name]);
 
     return (
         <section className="section is-medium">
             <div className="container">
-                { fetchProducts.length ?
-                <ProductsList productsList={fetchProducts} productsCategory={category_name} productsTitle={category_name} /> : <Spinner /> }
+                { loading ? 
+                    <Spinner /> :
+                    fetchProducts.length &&
+                    <ProductsList productsList={fetchProducts} productsTitle={category_name} />
+                }
             </div>
         </section>
     )

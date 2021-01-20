@@ -31,7 +31,7 @@ const WidgetCart = ({show, action}) => {
         <div className="media is-flex is-align-items-center" key={item.product.id}>
             <figure className="media-left">
                 <p className="image is-64x64">
-                    <img src={item.product.image} alt={item.product.title} />
+                    <img src={`/products/${item.product.image}`} alt={item.product.title} />
                 </p>
             </figure>
             <div className="media-content">

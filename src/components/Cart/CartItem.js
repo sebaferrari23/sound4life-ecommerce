@@ -23,7 +23,7 @@ const CartItem = ({ id, image, title, quantity, price, stock }) => {
             <td>
                 <div className="is-flex is-align-items-center">
                     <figure className="image is-96x96 mr-3">
-                        <img src={image} alt={title} />
+                        <img src={`/products/${image}`} alt={title} />
                     </figure>
                     <h3 className="title is-6">{title}</h3>
                 </div>

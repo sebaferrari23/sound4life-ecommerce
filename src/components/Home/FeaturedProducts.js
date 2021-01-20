@@ -1,27 +1,37 @@
 import {useState, useEffect} from 'react';
-import { products } from "../../constant/products";
 import ProductsList from '../Product/ProductsList';
 import Spinner from '../general/Spinner';
+import { getFirestore } from '../../db';
 
 const FeaturedProducts = () => {
 
-    const [fetchProducts, setFetchProducts] = useState([]);
-
-    const getProducts = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(products);
-        }, 500)
-    })
+    const [fetchFeaturedProducts, setFetchFeaturedProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        getProducts.then(rta => setFetchProducts(rta));
+        setLoading(true);
+        const db = getFirestore();
+
+        db.collection('products').where('featured', '==', true).get()
+        .then(featuredProducts => {
+            let productsArr = [];
+            featuredProducts.docs.forEach(doc => {
+                productsArr.push({id: doc.id, data: doc.data()})
+            })
+            setFetchFeaturedProducts(productsArr);
+            setLoading(false);
+        })
+        .catch(e => console.log(e));
     }, []);
 
     return (
         <section className="section is-medium">
             <div className="container">
-                { fetchProducts.length ?
-                <ProductsList productsList={fetchProducts} productsTitle="New products" /> : <Spinner /> }
+                { loading ? 
+                    <Spinner /> :
+                    fetchFeaturedProducts.length &&
+                    <ProductsList productsList={fetchFeaturedProducts} productsTitle="New products" />
+                }
             </div>
         </section>
     )

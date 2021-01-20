@@ -47,7 +47,7 @@ const ProductDetail = ({product}) => {
         <article className="columns is-align-items-center">
             <div className="column is-half">
                 <figure className="image is-animated">
-                    <img src={product.image} alt={product.title} />
+                    <img src={`/products/${product.image}`} alt={product.title} />
                 </figure >
             </div>
             <div className="column pr-6">
