@@ -18,7 +18,7 @@ const Cart = () => {
                 <Link to="/" className="button is-primary is-outlined is-rounded"><span className="icon"><i className="fas fa-arrow-left"></i></span><span>Continue shopping</span></Link>
                 
                 { data.itemsCart.items.length > 0 &&
-                    <button className="button is-primary is-pulled-right is-rounded">Go to Checkout</button>
+                    <Link to="/checkout" className="button is-primary is-pulled-right is-rounded">Go to Checkout</Link>
                 }
             </div>
         </section>
