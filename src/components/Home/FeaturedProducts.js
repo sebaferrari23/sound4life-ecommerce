@@ -25,15 +25,13 @@ const FeaturedProducts = () => {
     }, []);
 
     return (
-        <section className="section is-medium">
-            <div className="container">
-                { loading ? 
-                    <Spinner /> :
-                    fetchFeaturedProducts.length &&
-                    <ProductsList productsList={fetchFeaturedProducts} productsTitle="New products" />
-                }
-            </div>
-        </section>
+        <div className="mb-6">
+            { loading ? 
+                <Spinner /> :
+                fetchFeaturedProducts.length &&
+                <ProductsList productsList={fetchFeaturedProducts} productsTitle="Featured products" />
+            }
+        </div>
     )
 }
 

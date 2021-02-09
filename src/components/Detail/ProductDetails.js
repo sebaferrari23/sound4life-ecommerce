@@ -53,7 +53,7 @@ const ProductDetail = ({product}) => {
             <div className="column pr-6">
                 <h1 className="title">{product.title}</h1>
                 <h3 className="subtitle">{product.brand}</h3>
-                <p className="mb-5">{product.descripcion}</p>
+                <p className="mb-5">{product.description}</p>
                 <p className="title"><strong>${product.price}</strong></p>
                 <div className="columns mb-5 is-align-items-center">
                     <div className="column">

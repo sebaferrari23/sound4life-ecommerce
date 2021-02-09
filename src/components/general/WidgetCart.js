@@ -53,7 +53,7 @@ const WidgetCart = ({show, action}) => {
             { data.itemsCart.totalCart > 0 &&
                 <div className="is-flex is-align-items-center is-justify-content-space-between mt-6">
                     <button className="button is-danger is-rounded" onClick={removeAllItemsFromCart}>Remove all products</button>
-                    <Link to="/cart" className="button is-primary is-pulled-right is-rounded"><span>Go To Cart</span><span className="icon"><i className="fas fa-arrow-right"></i></span></Link>
+                    <Link to="/cart" onClick={action} className="button is-primary is-pulled-right is-rounded"><span>Go To Cart</span><span className="icon"><i className="fas fa-arrow-right"></i></span></Link>
                 </div>
                 
             }

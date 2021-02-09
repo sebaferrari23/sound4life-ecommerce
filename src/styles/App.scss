@@ -11,10 +11,12 @@ $white: #fff;
 $family-sans-serif: "Poppins", sans-serif;
 $primary: $purple;
 $fullhd-enabled: false;
+$dark: #000;
 
 // Update some of Bulma's component variables
 $navbar-item-hover-background-color: transparent;
 $footer-padding: 3rem 1.5rem;
+$box-padding: 1.5rem;
 
 // Import Bulma
 @import "../../node_modules/bulma/sass/utilities/_all.sass";
@@ -24,6 +26,7 @@ $footer-padding: 3rem 1.5rem;
 
 // Elements
 @import "../../node_modules/bulma/sass/elements/button.sass";
+@import "../../node_modules/bulma/sass/elements/icon.sass";
 @import "../../node_modules/bulma/sass/elements/container.sass";
 @import "../../node_modules/bulma/sass/elements/title.sass";
 @import "../../node_modules/bulma/sass/elements/table.sass";
@@ -42,8 +45,6 @@ $footer-padding: 3rem 1.5rem;
 @import "../../node_modules/bulma/sass/layout/hero.sass";
 @import "../../node_modules/bulma/sass/layout/footer.sass";
 @import "../../node_modules/bulma/sass/layout/section.sass";
-
-@import "../../node_modules/bulma/bulma";
 
 // Customs scss
 @import "custom.scss";
