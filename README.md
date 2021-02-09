@@ -10,7 +10,7 @@ This is the React.js final project from [Coder House](https://coderhouse.com).\
 * Google Firebase
 
 ## Screenshot 🎞
-![Sound4Life](https://sebaferrari.com.ar/sound4life/sound4life.gif)
+<img src="/screenshot.gif?raw=true" width="100%">
 
 ## Getting Started 🚀
 
